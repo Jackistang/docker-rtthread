@@ -19,6 +19,6 @@ COPY rtconfig.py rt-thread/bsp/qemu-vexpress-a9/rtconfig.py
 COPY menuconfig.py rt-thread/tools/menuconfig.py
 
 RUN cd rt-thread/bsp/qemu-vexpress-a9 && pwd && scons --menuconfig
-RUN /home/.env/env.sh
+ENV PATH=/root/.env/tools/scripts:$PATH
 
 CMD [ "/bin/bash" ]
