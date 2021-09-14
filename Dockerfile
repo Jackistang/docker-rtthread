@@ -9,17 +9,15 @@ RUN apt install -y git libncurses5-dev python3 python3-pip qemu
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-RUN cd $HOMEPATH
 RUN git clone -b 4.0.1 https://github.com.cnpmjs.org/SCons/scons.git
 RUN cd scons && python3 setup.py install
 
-RUN cd $HOMEPATH
 RUN git clone -b v4.0.3 https://github.com.cnpmjs.org/RT-Thread/rt-thread.git
 
 ADD gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 /opt/
-COPY rtconfig.py rtthread/bsp/qemu-vexpress-a9/rtconfig.py
+COPY rtconfig.py rt-thread/bsp/qemu-vexpress-a9/rtconfig.py
 
-RUN scons --menuconfig
+RUN cd rt-thread/bsp/qemu-vexpress-a9 && pwd && scons --menuconfig
 
 CMD /home/.env/env.sh
 CMD echo "----end----"
