@@ -16,9 +16,9 @@ RUN git clone -b v4.0.3 https://github.com.cnpmjs.org/RT-Thread/rt-thread.git
 
 ADD gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 /opt/
 COPY rtconfig.py rt-thread/bsp/qemu-vexpress-a9/rtconfig.py
+COPY menuconfig.py rt-thread/tools/menuconfig.py
 
 RUN cd rt-thread/bsp/qemu-vexpress-a9 && pwd && scons --menuconfig
+RUN /home/.env/env.sh
 
-CMD /home/.env/env.sh
-CMD echo "----end----"
-CMD /bin/bash
+CMD [ "/bin/bash" ]
